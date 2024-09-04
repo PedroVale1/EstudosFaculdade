@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Votação - Grêmio Estudantil</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Votação - Grêmio Estudantil</h1>
+        </header>
+
+        <section class="cadastro-chapa">
+            <h2>Cadastro de Chapa</h2>
+            <form id="cadastroChapaForm">
+                <label for="nomeChapa">Nome da Chapa:</label>
+                <input type="text" id="nomeChapa" name="nomeChapa" required>
+
+                <label for="numeroChapa">Número da Chapa:</label>
+                <input type="number" id="numeroChapa" name="numeroChapa" required>
+
+                <button type="submit">Cadastrar Chapa</button>
+            </form>
+        </section>
+
+        <section class="votacao">
+            <h2>Votação</h2>
+            <form id="votacaoForm">
+                <label for="numeroChapaVoto">Número da Chapa:</label>
+                <input type="number" id="numeroChapaVoto" name="numeroChapaVoto" required>
+
+                <button type="submit">Votar</button>
+            </form>
+        </section>
+
+        <section class="resultado">
+            <h2>Resultado</h2>
+            <canvas id="resultadoChart" width="400" height="200"></canvas>
+        </section>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('resultadoChart').getContext('2d');
+        const resultadoChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Chapa 1', 'Chapa 2', 'Chapa 3'], // Atualize com os nomes das chapas
+                datasets: [{
+                    label: 'Votos',
+                    data: [12, 19, 3], // Atualize com o número de votos
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
